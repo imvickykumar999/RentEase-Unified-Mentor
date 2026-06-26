@@ -50,11 +50,11 @@ graph TD
     end
     
     subgraph Server-Side Services
-        AuthRoute[/api/auth]
-        ProductRoute[/api/products]
-        OrderRoute[/api/orders]
-        MaintRoute[/api/maintenance]
-        CityRoute[/api/cities]
+        AuthRoute["/api/auth"]
+        ProductRoute["/api/products"]
+        OrderRoute["/api/orders"]
+        MaintRoute["/api/maintenance"]
+        CityRoute["/api/cities"]
     end
     
     Client --> Client-Side Contexts

@@ -64,11 +64,11 @@ graph TD
     end
     
     subgraph Backend Routing Services
-        ExpressBackend --> AuthRoute[/api/auth]
-        ExpressBackend --> ProdRoute[/api/products]
-        ExpressBackend --> OrderRoute[/api/orders]
-        ExpressBackend --> MaintRoute[/api/maintenance]
-        ExpressBackend --> CityRoute[/api/cities]
+        ExpressBackend --> AuthRoute["/api/auth"]
+        ExpressBackend --> ProdRoute["/api/products"]
+        ExpressBackend --> OrderRoute["/api/orders"]
+        ExpressBackend --> MaintRoute["/api/maintenance"]
+        ExpressBackend --> CityRoute["/api/cities"]
     end
 ```
 
