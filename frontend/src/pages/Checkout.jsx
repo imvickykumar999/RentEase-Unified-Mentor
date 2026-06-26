@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
@@ -56,7 +57,7 @@ const Checkout = () => {
         quantity: item.quantity,
       }));
 
-      const response = await fetch('http://localhost:5000/api/orders', {
+      const response = await fetch(`${API_BASE_URL}/api/orders`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -31,7 +32,7 @@ const UserPortal = () => {
 
     const fetchOrders = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/orders/user', {
+        const res = await fetch(`${API_BASE_URL}/api/orders/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -47,7 +48,7 @@ const UserPortal = () => {
 
     const fetchTickets = async () => {
       try {
-        const res = await fetch('http://localhost:5000/api/maintenance/user', {
+        const res = await fetch(`${API_BASE_URL}/api/maintenance/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -81,7 +82,7 @@ const UserPortal = () => {
       // Find order item details from state
       const [orderId, productId] = selectedOrderItem.split('|');
 
-      const response = await fetch('http://localhost:5000/api/maintenance', {
+      const response = await fetch(`${API_BASE_URL}/api/maintenance`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -103,7 +104,7 @@ const UserPortal = () => {
         setSelectedOrderItem('');
         
         // Refresh ticket list
-        const res = await fetch('http://localhost:5000/api/maintenance/user', {
+        const res = await fetch(`${API_BASE_URL}/api/maintenance/user`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         const refreshedData = await res.json();

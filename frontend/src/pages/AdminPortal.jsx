@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
@@ -55,26 +56,26 @@ const AdminPortal = () => {
     setLoading(true);
     try {
       // Products
-      const prodRes = await fetch('http://localhost:5000/api/products');
+      const prodRes = await fetch(`${API_BASE_URL}/api/products`);
       const prodData = await prodRes.json();
       if (prodData.success) setProducts(prodData.data);
 
       // Orders
-      const orderRes = await fetch('http://localhost:5000/api/orders', {
+      const orderRes = await fetch(`${API_BASE_URL}/api/orders`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const orderData = await orderRes.json();
       if (orderData.success) setOrders(orderData.data);
 
       // Tickets
-      const ticketRes = await fetch('http://localhost:5000/api/maintenance', {
+      const ticketRes = await fetch(`${API_BASE_URL}/api/maintenance`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const ticketData = await ticketRes.json();
       if (ticketData.success) setTickets(ticketData.data);
 
       // Cities
-      const cityRes = await fetch('http://localhost:5000/api/cities');
+      const cityRes = await fetch(`${API_BASE_URL}/api/cities`);
       const cityData = await cityRes.json();
       if (cityData.success) setCities(cityData.data);
 
@@ -92,7 +93,7 @@ const AdminPortal = () => {
   // Handle order status update
   const handleUpdateOrderStatus = async (orderId, newStatus) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/orders/${orderId}/status`, {
+      const response = await fetch(`${API_BASE_URL}/api/orders/${orderId}/status`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -114,7 +115,7 @@ const AdminPortal = () => {
   const handleScheduleTicket = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`http://localhost:5000/api/maintenance/${schedulingTicketId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/maintenance/${schedulingTicketId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -151,7 +152,7 @@ const AdminPortal = () => {
     try {
       const cityList = prodCities.split(',').map(c => c.trim());
       
-      const response = await fetch('http://localhost:5000/api/products', {
+      const response = await fetch(`${API_BASE_URL}/api/products`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -191,7 +192,7 @@ const AdminPortal = () => {
   const handleDeleteProduct = async (prodId) => {
     if (!window.confirm('Are you sure you want to remove this product from inventory?')) return;
     try {
-      const response = await fetch(`http://localhost:5000/api/products/${prodId}`, {
+      const response = await fetch(`${API_BASE_URL}/api/products/${prodId}`, {
         method: 'DELETE',
         headers: { Authorization: `Bearer ${token}` }
       });
@@ -214,7 +215,7 @@ const AdminPortal = () => {
     if (!newCityName) return;
 
     try {
-      const response = await fetch('http://localhost:5000/api/cities', {
+      const response = await fetch(`${API_BASE_URL}/api/cities`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

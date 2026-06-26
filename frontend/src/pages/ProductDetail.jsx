@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useCity } from '../context/CityContext';
@@ -18,7 +19,7 @@ const ProductDetail = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await fetch(`http://localhost:5000/api/products/${id}`);
+        const response = await fetch(`${API_BASE_URL}/api/products/${id}`);
         const data = await response.json();
         
         if (data.success) {

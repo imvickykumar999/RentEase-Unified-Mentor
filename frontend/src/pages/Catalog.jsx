@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 import { useSearchParams } from 'react-router-dom';
 import { useCity } from '../context/CityContext';
 import ProductCard from '../components/ProductCard';
@@ -21,7 +22,7 @@ const Catalog = () => {
     const fetchProducts = async () => {
       setLoading(true);
       try {
-        let url = `http://localhost:5000/api/products?city=${selectedCity}`;
+        let url = `${API_BASE_URL}/api/products?city=${selectedCity}`;
         if (categoryParam) url += `&category=${categoryParam}`;
         if (subcategoryParam) url += `&subcategory=${subcategoryParam}`;
         if (searchQuery) url += `&q=${searchQuery}`;

@@ -1,0 +1,14 @@
+[Unit]
+Description=RentEase Vite Frontend Dev Server
+After=network.target
+
+[Service]
+Type=simple
+User=ubuntu
+WorkingDirectory=/home/ubuntu/MyProjects/RentEase/frontend
+ExecStart=/usr/bin/npm run dev
+Restart=on-failure
+Environment=NODE_ENV=development
+
+[Install]
+WantedBy=multi-user.target

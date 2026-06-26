@@ -1,4 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
+import { API_BASE_URL } from '../config';
 
 const CityContext = createContext();
 
@@ -9,7 +10,7 @@ export const CityProvider = ({ children }) => {
   useEffect(() => {
     const fetchCities = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/cities');
+        const response = await fetch(`${API_BASE_URL}/api/cities`);
         const data = await response.json();
         if (data.success && data.data.length > 0) {
           const cityNames = data.data.map(c => c.name);
